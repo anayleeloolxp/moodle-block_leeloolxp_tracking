@@ -44,7 +44,7 @@ class block_leeloolxp_tracking extends block_base {
     /**
      * Block initialization
      */
-    function init() {
+    function public init() {
         $this->title = get_string('pluginname', 'block_leeloolxp_tracking');
     }
 
@@ -53,7 +53,7 @@ class block_leeloolxp_tracking extends block_base {
      *
      * @return string of block
      */
-    function get_content() {
+    function public get_content() {
         global $USER;
         if ($this->content !== null) {
             return $this->content;
@@ -556,7 +556,7 @@ class block_leeloolxp_tracking extends block_base {
      *
      * @return boolean
      */
-    function has_config() {
+    function public has_config() {
         return true;
     }
 }

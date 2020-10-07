@@ -31,24 +31,18 @@ defined('MOODLE_INTERNAL') || die;
 require_once($CFG->dirroot . '/course/lib.php');
 
 /**
-
- * class block_leeloolxp_tracking
-
+ * Block attendance info
  *
-
- * @package    block_leeloolxp_tracking
-
- *
-
+ * @copyright  2020 Leeloo LXP (https://leeloolxp.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
-
  */
-/*
-    Plugin for show info about trtacking.
-*/
 class block_leeloolxp_tracking extends block_base {
     /**
-     * Block initialization.
+     * Show attendance information of user.
+     */
+
+    /**
+     * Block initialization
      */
     function init() {
         $this->title = get_string('pluginname', 'block_leeloolxp_tracking');
@@ -505,11 +499,14 @@ class block_leeloolxp_tracking extends block_base {
             if (strpos($clockintime, '-') === false) {
                 $html .= '';
 
-                $html .= '<div id="countdown_div" style="display:none;">Time: <span id="countdown"></span>';if ($sdetail->data) {$html .= "/" . $sdetail->data->minimum_hours . ":00";};
-
+                $html .= '<div id="countdown_div" style="display:none;">Time: <span id="countdown"></
+                span>';
+                if ($sdetail->data) {
+                    $html .= "/" . $sdetail->data->minimum_hours . ":00";
+                };
                 $html .= '</div>';
-
-                $html .= '<div id = "clockin_break_span_main" style="display:none">Break: <span id="clockin_break_span" >' . 
+                $html .= '<div id = "clockin_break_span_main" style="display:none">Break:
+                <span id="clockin_break_span" >' .
                 $totalbreack . ' </span>';
                 if ($sdetail->data) {
                     if (strpos($sdetail->data->allow_breack_time, '.') === false) {
@@ -530,15 +527,15 @@ class block_leeloolxp_tracking extends block_base {
             $html .= '<br> <br> <br>';
 
             if (isset($_REQUEST['id'])) {
-                if ($this->page == 'mod-wespher-conference' || $this->page == 'mod-wespher-view' || $this->page == 
-                'mod-resource-view' || $this->page == 'mod-regularvideo-view' || $this->page == 'mod-forum-view' || 
-                $this->page == 'mod-book-view' || $this->page == 'mod-assign-view' || $this->page == 'mod-survey-view' || 
-                $this->page == 'mod-page-view' || $this->page == 'mod-quiz-view' || $this->page == 'mod-quiz-attempt' || 
-                $this->page == 'mod-quiz-summary' || $this->page == 'mod-quiz-summary' || $this->page == 'mod-chat-view' || 
-                $this->page == 'mod-choice-view' || $this->page == 'mod-lti-view' || $this->page == 'mod-feedback-view' || 
-                $this->page == 'mod-data-view' || $this->page == 'mod-forum-view' || $this->page == 'mod-glossary-view' || 
-                $this->page == 'mod-scorm-view' || $this->page == 'mod-wiki-view' || $this->page == 'mod-workshop-view' || 
-                $this->page == 'mod-folder-view' || $this->page == 'mod-imscp-view' || $this->page == 'mod-label-view' || 
+                if ($this->page == 'mod-wespher-conference' || $this->page == 'mod-wespher-view' || $this->page ==
+                'mod-resource-view' || $this->page == 'mod-regularvideo-view' || $this->page == 'mod-forum-view' ||
+                $this->page == 'mod-book-view' || $this->page == 'mod-assign-view' || $this->page == 'mod-survey-view' ||
+                $this->page == 'mod-page-view' || $this->page == 'mod-quiz-view' || $this->page == 'mod-quiz-attempt' ||
+                $this->page == 'mod-quiz-summary' || $this->page == 'mod-quiz-summary' || $this->page == 'mod-chat-view' ||
+                $this->page == 'mod-choice-view' || $this->page == 'mod-lti-view' || $this->page == 'mod-feedback-view' ||
+                $this->page == 'mod-data-view' || $this->page == 'mod-forum-view' || $this->page == 'mod-glossary-view' ||
+                $this->page == 'mod-scorm-view' || $this->page == 'mod-wiki-view' || $this->page == 'mod-workshop-view' ||
+                $this->page == 'mod-folder-view' || $this->page == 'mod-imscp-view' || $this->page == 'mod-label-view' ||
                 $this->page == 'mod-url-view') {
                     $html .= '<b>' . $taskname . '</b> <br>';
                     $html .= 'Time: <span id="Tcountdown" style="display:none;"></span>';

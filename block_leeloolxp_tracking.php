@@ -44,8 +44,8 @@ require_once($CFG->dirroot . '/course/lib.php');
 
  */
 /*
-plugin for show info about trtacking
- */
+    Plugin for show info about trtacking.
+*/
 class block_leeloolxp_tracking extends block_base {
 
     protected $timestart = null;
@@ -57,7 +57,7 @@ class block_leeloolxp_tracking extends block_base {
      */
 
     function init() {
-       $this->title = get_string('pluginname', 'block_leeloolxp_tracking');
+        $this->title = get_string('pluginname', 'block_leeloolxp_tracking');
     }
 
     /**
@@ -67,9 +67,8 @@ class block_leeloolxp_tracking extends block_base {
      */
     function get_content() {
         global $USER;
-        global $PAGE;
         
-        if ($this->content !== NULL) {
+        if ($this->content !== null) {
             return $this->content;
         }
         if (empty($this->instance)) {
@@ -91,7 +90,6 @@ class block_leeloolxp_tracking extends block_base {
             return true;
         }
         $infoteamnio = json_decode($output);
-        
         if ($infoteamnio->status != 'false') {
             $teamniourl = $infoteamnio->data->install_url;
         } else {
@@ -113,7 +111,7 @@ class block_leeloolxp_tracking extends block_base {
             return true;
         }
 
-        $url = $teamnio_url . '/admin/sync_moodle_course/check_user_by_email/' . $useremail;
+        $url = $teamniourl . '/admin/sync_moodle_course/check_user_by_email/' . $useremail;
 
         $curl = new curl;
         $options = array(
@@ -143,7 +141,7 @@ class block_leeloolxp_tracking extends block_base {
 
         $sdetail = json_decode($shiftdetails);
 
-        $url = $teamnio_url . '/admin/sync_moodle_course/get_attendance_info/' . $userid;
+        $url = $teamniourl . '/admin/sync_moodle_course/get_attendance_info/' . $userid;
 
         $curl = new curl;
         $options = array(
@@ -218,18 +216,21 @@ class block_leeloolxp_tracking extends block_base {
 
             $trackingtotalseconds = ($trackingh * 60 * 60) + ($trackingm * 60) + $trackings;
 
-            if (strlen($trakingtimearr[0]) <= 1) {$trackingtimehours = "0" . $trakingtimearr[0];} else {
-
+            if (strlen($trakingtimearr[0]) <= 1) {
+                $trackingtimehours = "0" . $trakingtimearr[0];
+            } else {
                 $trackingtimehours = $trakingtimearr[0];
             }
 
-            if (strlen($trakingtimearr[1]) <= 1) {$trackingtimeminuts = "0" . $trakingtimearr[1];} else {
-
+            if (strlen($trakingtimearr[1]) <= 1) {
+                $trackingtimeminuts = "0" . $trakingtimearr[1];
+            } else {
                 $trackingtimeminuts = $trakingtimearr[1];
             }
 
-            if (strlen($trakingtimearr[2]) <= 1) {$trackingtimeseconds = "0" . $trakingtimearr[2];} else {
-
+            if (strlen($trakingtimearr[2]) <= 1) {
+                $trackingtimeseconds = "0" . $trakingtimearr[2];
+            } else {
                 $trackingtimeseconds = $trakingtimearr[2];
             }
 
@@ -248,7 +249,7 @@ class block_leeloolxp_tracking extends block_base {
             $tasknameandestimates = $output;
 
             if ($tasknameandestimates != '0') {
-                $arrtaskdetails = explode('||', $task_name_and_estimates);
+                $arrtaskdetails = explode('||', $tasknameandestimates);
 
                 $taskname = $arrtaskdetails[0];
 
@@ -256,7 +257,7 @@ class block_leeloolxp_tracking extends block_base {
 
                 $estimatesarr = explode(':', $estimates);
 
-                if (strlen($estimates_arr[0]) <= 1) {
+                if (strlen($estimatesarr[0]) <= 1) {
                     $estimatesh = "0" . $estimatesarr[0];
                 } else {
 
@@ -264,7 +265,7 @@ class block_leeloolxp_tracking extends block_base {
                 }
 
                 if (strlen($estimatesarr[1]) <= 1) {
-                    $estimatesm = "0" . $estimates_arr[1];
+                    $estimatesm = "0" . $estimatesarr[1];
                 } else {
 
                     $estimatesm = $estimatesarr[1];
@@ -314,13 +315,8 @@ class block_leeloolxp_tracking extends block_base {
                     $endtimestatus = 'On Time (Learning now)';
                 }
             }
-
             $postdata = '&user_id=' . $userid . '&start_status=' . $starttimestatus . '&end_status=' . $endtimestatus;
-
-            
-
             $url = $teamniourl . '/admin/sync_moodle_course/update_attendance_status/';
-
             $curl = new curl;
             $options = array(
                 'CURLOPT_RETURNTRANSFER' => true,
@@ -328,25 +324,15 @@ class block_leeloolxp_tracking extends block_base {
                 'CURLOPT_POST' => count($postdata),
             );
             $curl->post($url, $postdata, $options);
-
-           $this->content = new stdClass;
-
+            $this->content = new stdClass;
             $configloginlogout = get_config('local_teamnio_web_login_tracking');
-
             $popupison = $configloginlogout->web_loginlogout_popup;
-
             $html = '';
-
             $html .= "<script>
-
                     var upgradeTime = '" . $clockintotalseconds . "';
-
                     var popup_is_on = '" . $popupison . "';
-
                     if(upgradeTime=='0') {   upgradeTime = 1; }
-
                     var seconds = upgradeTime;
-
                     var clock_i = new Array();
 
                     function timer() {
@@ -452,19 +438,11 @@ class block_leeloolxp_tracking extends block_base {
 
 
                       }
-
                       var t_C =  document.getElementById('Tcountdown');
-
-
-
                       if (typeof t_C !== 'undefined' ) {
-
-                            if(t_C !== null) {
-
-
-
-                                document.getElementById('Tcountdown').innerHTML =Tpad(hours) + ':' + Tpad(minutes) + ':' + Tpad(remainingSeconds);
-
+                          if(t_C !== null) {
+                                document.getElementById('Tcountdown').innerHTML =Tpad(hours) + ':' + Tpad(minutes) + ':' + Tpad
+                                (remainingSeconds);
                                 if (Tseconds == 0) {
 
                                     clearInterval(countdownTimer);
@@ -482,41 +460,23 @@ class block_leeloolxp_tracking extends block_base {
                       }
 
                     }
-
                     var countdown = setInterval('Ttimer()', 1000);
-
-
-
                     setInterval(show_clockin_timer, 2000);
-
-
-
-
-
                     function show_clockin_timer() {
-
                         var y = document.getElementById('countdown_div');
                         var b_div_main = document.getElementById('clockin_break_span_main');
                         if(y) {
                                 var clock_intracking_on = localStorage.getItem('tracked');
-
                                 if(clock_intracking_on=='1') {
                                     document.getElementById('countdown_div').style.display = 'inline-block';
                                     if(b_div_main) {
                                         document.getElementById('clockin_break_span_main').style.display = 'block';
                                     }
                                 }
+                            }
                         }
-
-                    }
-
-
-
-                    setInterval(show_tracking_timer, 2000);
-
-
-
-                    function show_tracking_timer() {
+                        setInterval(show_tracking_timer, 2000);
+                        function show_tracking_timer() {
 
                             var x =  document.getElementById('Tcountdown');
 
@@ -529,8 +489,6 @@ class block_leeloolxp_tracking extends block_base {
                         }
 
                     }
-
-
                     </script>";
 
             $html .= '<b><hr></b><br> <b> Shift today </b> ' . $outputtimezone . ' <br>';
@@ -561,8 +519,8 @@ class block_leeloolxp_tracking extends block_base {
 
                 $html .= '</div>';
 
-                $html .= '<div id = "clockin_break_span_main" style="display:none">Break: <span id="clockin_break_span" >' . $totalbreack . ' </span>';
-
+                $html .= '<div id = "clockin_break_span_main" style="display:none">Break: <span id="clockin_break_span" >' . 
+                $totalbreack . ' </span>';
                 if ($sdetail->data) {
                     if (strpos($sdetail->data->allow_breack_time, '.') === false) {
                         $html .= " /0" . $sdetail->data->allow_breack_time . ":00:00";
@@ -584,7 +542,16 @@ class block_leeloolxp_tracking extends block_base {
             $html .= '<br> <br> <br>';
 
             if (isset($_REQUEST['id'])) {
-                if ($PAGE->pagetype == 'mod-wespher-conference' || $PAGE->pagetype == 'mod-wespher-view' || $PAGE->pagetype == 'mod-resource-view' || $PAGE->pagetype == 'mod-regularvideo-view' || $PAGE->pagetype == 'mod-forum-view' || $PAGE->pagetype == 'mod-book-view' || $PAGE->pagetype == 'mod-assign-view' || $PAGE->pagetype == 'mod-survey-view' || $PAGE->pagetype == 'mod-page-view' || $PAGE->pagetype == 'mod-quiz-view' || $PAGE->pagetype == 'mod-quiz-attempt' || $PAGE->pagetype == 'mod-quiz-summary' || $PAGE->pagetype == 'mod-quiz-summary' || $PAGE->pagetype == 'mod-chat-view' || $PAGE->pagetype == 'mod-choice-view' || $PAGE->pagetype == 'mod-lti-view' || $PAGE->pagetype == 'mod-feedback-view' || $PAGE->pagetype == 'mod-data-view' || $PAGE->pagetype == 'mod-forum-view' || $PAGE->pagetype == 'mod-glossary-view' || $PAGE->pagetype == 'mod-scorm-view' || $PAGE->pagetype == 'mod-wiki-view' || $PAGE->pagetype == 'mod-workshop-view' || $PAGE->pagetype == 'mod-folder-view' || $PAGE->pagetype == 'mod-imscp-view' || $PAGE->pagetype == 'mod-label-view' || $PAGE->pagetype == 'mod-url-view') {
+                if ($this->page == 'mod-wespher-conference' || $this->page == 'mod-wespher-view' || $this->page == 
+                'mod-resource-view' || $this->page == 'mod-regularvideo-view' || $this->page == 'mod-forum-view' || 
+                $this->page == 'mod-book-view' || $this->page == 'mod-assign-view' || $this->page == 'mod-survey-view' || 
+                $this->page == 'mod-page-view' || $this->page == 'mod-quiz-view' || $this->page == 'mod-quiz-attempt' || 
+                $this->page == 'mod-quiz-summary' || $this->page == 'mod-quiz-summary' || $this->page == 'mod-chat-view' || 
+                $this->page == 'mod-choice-view' || $this->page == 'mod-lti-view' || $this->page == 'mod-feedback-view' || 
+                $this->page == 'mod-data-view' || $this->page == 'mod-forum-view' || $this->page == 'mod-glossary-view' || 
+                $this->page == 'mod-scorm-view' || $this->page == 'mod-wiki-view' || $this->page == 'mod-workshop-view' || 
+                $this->page == 'mod-folder-view' || $this->page == 'mod-imscp-view' || $this->page == 'mod-label-view' || 
+                $this->page == 'mod-url-view') {
                     $html .= '<b>' . $taskname . '</b> <br>';
                     $html .= 'Time: <span id="Tcountdown" style="display:none;"></span>';
 

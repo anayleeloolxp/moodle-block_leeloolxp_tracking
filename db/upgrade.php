@@ -23,11 +23,16 @@
 
 defined('MOODLE_INTERNAL') || die();
 /**
- * Upgrade code for the recent activity block.
+ * Upgrade the plugin.
  *
  * @param int $oldversion
- * @param object $block
+ * @return bool always true
  */
-function xmldb_block_leeloolxp_tracking_upgrade($oldversion, $block) {
+function xmldb_block_leeloolxp_tracking_upgrade($oldversion) {
+    global $DB;
+    $dbman = $DB->get_manager();
+    if ($oldversion < 2015031200) {
+        upgrade_plugin_savepoint(true, 2015031200, 'qtype', 'myqtype');
+    }
     return true;
 }

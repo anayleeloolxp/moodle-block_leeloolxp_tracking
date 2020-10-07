@@ -17,13 +17,13 @@
 /**
  * Privacy subsystem implementation for block_profile_headline.
  *
- * @package    block_profile_headline
+ * @package    block_leeloolxp_tracking
  * @category   privacy
  * @copyright  2018 Shamim Rezaie <shamim@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace block_profile_headline\privacy;
+namespace block_leeloolxp_tracking\privacy;
 
 use core_privacy\local\metadata\collection;
 use core_privacy\local\request\approved_contextlist;
@@ -34,9 +34,9 @@ use core_privacy\local\request\userlist;
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * The block_profile_headline does not keep any data for more than COURSE_MAX_RECENT_PERIOD.
+ * Block attendance info
  *
- * @copyright  2018 Shamim Rezaie <shamim@moodle.com>
+ * @copyright  2020 Leeloo LXP (https://leeloolxp.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements

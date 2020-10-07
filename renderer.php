@@ -24,14 +24,10 @@
 defined('MOODLE_INTERNAL') || die;
 
 /**
- * leeloolxp_tracking block rendrer
+ * block_leeloolxp_tracking block attendance
  *
- * @package    block_leeloolxp_tracking
- * @copyright  2012 Marina Glancy
+ * @copyright  2012 Adam Olley <adam.olley@netspot.com.au>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-/*
-    Class for block.
-*/
 class block_leeloolxp_tracking_renderer extends plugin_renderer_base {
 }

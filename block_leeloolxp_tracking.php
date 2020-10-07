@@ -27,7 +27,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
 
  */
-
+defined('MOODLE_INTERNAL') || die;
 require_once($CFG->dirroot . '/course/lib.php');
 
 /**
@@ -47,27 +47,20 @@ require_once($CFG->dirroot . '/course/lib.php');
     Plugin for show info about trtacking.
 */
 class block_leeloolxp_tracking extends block_base {
-
-    protected $timestart = null;
-
     /**
-
-     * Initialises the block.
-
+     * Block initialization.
      */
-
     function init() {
         $this->title = get_string('pluginname', 'block_leeloolxp_tracking');
     }
 
     /**
-
-     * Content of the block.
-
+     * Return contents of block_leeloolxp_tracking block
+     *
+     * @return string of block
      */
     function get_content() {
         global $USER;
-        
         if ($this->content !== null) {
             return $this->content;
         }
@@ -75,7 +68,6 @@ class block_leeloolxp_tracking extends block_base {
             $this->content = '';
             return $this->content;
         }
-
         $configsetting = get_config('block_leeloolxp_tracking');
         $liacnsekey = $configsetting->leeloolxp_block_tracking_licensekey;
         $postdata = '&license_key=' . $liacnsekey;
@@ -96,9 +88,7 @@ class block_leeloolxp_tracking extends block_base {
             return true;
         }
         $useremail = $USER->email;
-
         $url = $teamniourl . '/admin/sync_moodle_course/check_user_status_by_email/' . $useremail;
-
         $curl = new curl;
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
@@ -525,9 +515,7 @@ class block_leeloolxp_tracking extends block_base {
                     if (strpos($sdetail->data->allow_breack_time, '.') === false) {
                         $html .= " /0" . $sdetail->data->allow_breack_time . ":00:00";
                     } else {
-
                         $breacktimearr = explode('.', $sdetail->data->allow_breack_time);
-
                         $html .= " /0" . $breacktimearr[0] . ":" . $breacktimearr[1] . ":00";
                     }
                     $html .= "</div>";
@@ -566,6 +554,11 @@ class block_leeloolxp_tracking extends block_base {
             return $this->content;
         }
     }
+    /**
+     * Allow the block to have a configuration page
+     *
+     * @return boolean
+     */
     function has_config() {
         return true;
     }

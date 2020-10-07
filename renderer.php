@@ -34,6 +34,4 @@ defined('MOODLE_INTERNAL') || die;
     Class for block.
 */
 class block_leeloolxp_tracking_renderer extends plugin_renderer_base {
-
-    
 }

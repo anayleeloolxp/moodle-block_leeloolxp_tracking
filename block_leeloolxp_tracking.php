@@ -179,7 +179,7 @@ class block_leeloolxp_tracking extends block_base {
         if (isset($_REQUEST['id'])) {
             $activityid = $_REQUEST['id'];
             $url = $teamniourl . '/admin/sync_moodle_course/get_activity_tracking_info/' . $userid . '/'
-          . $activityid;
+            . $activityid;
             $curl = new curl;
             $options = array(
                 'CURLOPT_RETURNTRANSFER' => true,
@@ -198,7 +198,6 @@ class block_leeloolxp_tracking extends block_base {
             $trackings = $trakingtimearr[2];
 
             $trackingtotalseconds = ($trackingh * 60 * 60) + ($trackingm * 60) + $trackings;
-
 
             if (strlen($trakingtimearr[0]) <= 1) {
                 $trackingtimehours = "0" . $trakingtimearr[0];
@@ -527,31 +526,33 @@ class block_leeloolxp_tracking extends block_base {
             $html .= '<br> <br> <br>';
 
             if (isset($_REQUEST['id'])) {
-                if ($this->page->pagetype == 'mod-wespher-conference' || $this->page->pagetype == 'mod-wespher-view' ||
-                    $this->page->pagetype =='mod-resource-view' || $this->page->pagetype == 'mod-regularvideo-view' ||
-                    $this->page->pagetype == 'mod-forum-view' ||
-                    $this->page->pagetype == 'mod-book-view' ||
-                    $this->page->pagetype == 'mod-assign-view' ||
-                    $this->page->pagetype == 'mod-survey-view' ||
-                    $this->page->pagetype == 'mod-page-view' ||
-                    $this->page->pagetype == 'mod-quiz-view' ||
-                    $this->page->pagetype == 'mod-quiz-attempt' ||
-                    $this->page->pagetype == 'mod-quiz-summary' ||
-                    $this->page->pagetype == 'mod-quiz-summary' ||
-                    $this->page->pagetype == 'mod-chat-view' ||
-                    $this->page->pagetype == 'mod-choice-view' ||
-                    $this->page->pagetype == 'mod-lti-view' ||
-                    $this->page->pagetype == 'mod-feedback-view' ||
-                    $this->page->pagetype == 'mod-data-view' ||
-                    $this->page->pagetype == 'mod-forum-view' ||
-                    $this->page->pagetype == 'mod-glossary-view' ||
-                    $this->page->pagetype == 'mod-scorm-view' ||
-                    $this->page->pagetype == 'mod-wiki-view' ||
-                    $this->page->pagetype == 'mod-workshop-view' ||
-                    $this->page->pagetype == 'mod-folder-view' ||
-                    $this->page->pagetype == 'mod-imscp-view' ||
-                    $this->page->pagetype == 'mod-label-view' ||
-                    $this->page->pagetype == 'mod-url-view') {
+                if ($this->page->pagetype == 'mod-wespher-conference' ||
+                $this->page->pagetype == 'mod-wespher-view' ||
+                $this->page->pagetype == 'mod-resource-view' ||
+                $this->page->pagetype == 'mod-regularvideo-view' ||
+                $this->page->pagetype == 'mod-forum-view' ||
+                $this->page->pagetype == 'mod-book-view' ||
+                $this->page->pagetype == 'mod-assign-view' ||
+                $this->page->pagetype == 'mod-survey-view' ||
+                $this->page->pagetype == 'mod-page-view' ||
+                $this->page->pagetype == 'mod-quiz-view' ||
+                $this->page->pagetype == 'mod-quiz-attempt' ||
+                $this->page->pagetype == 'mod-quiz-summary' ||
+                $this->page->pagetype == 'mod-quiz-summary' ||
+                $this->page->pagetype == 'mod-chat-view' ||
+                $this->page->pagetype == 'mod-choice-view' ||
+                $this->page->pagetype == 'mod-lti-view' ||
+                $this->page->pagetype == 'mod-feedback-view' ||
+                $this->page->pagetype == 'mod-data-view' ||
+                $this->page->pagetype == 'mod-forum-view' ||
+                $this->page->pagetype == 'mod-glossary-view' ||
+                $this->page->pagetype == 'mod-scorm-view' ||
+                $this->page->pagetype == 'mod-wiki-view' ||
+                $this->page->pagetype == 'mod-workshop-view' ||
+                $this->page->pagetype == 'mod-folder-view' ||
+                $this->page->pagetype == 'mod-imscp-view' ||
+                $this->page->pagetype == 'mod-label-view' ||
+                $this->page->pagetype == 'mod-url-view') {
                     $html .= '<b>' . $taskname . '</b> <br>';
                     $html .= 'Time: <span id="Tcountdown" style="display:none;"></span>';
 

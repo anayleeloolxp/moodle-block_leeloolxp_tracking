@@ -308,7 +308,7 @@ class block_leeloolxp_tracking extends block_base {
             );
             $curl->post($url, $postdata, $options);
             $this->content = new stdClass;
-            $configloginlogout = get_config('local_teamnio_web_login_tracking');
+            $configloginlogout = get_config('local_leeloolxp_web_login_tracking');
             $popupison = $configloginlogout->web_loginlogout_popup;
             $html = '';
             $html .= "<script>

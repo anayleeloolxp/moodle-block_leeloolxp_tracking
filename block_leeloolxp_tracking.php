@@ -70,7 +70,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => count($postdata),
+            'CURLOPT_POST' => 1,
         );
         if (!$output = $curl->post($url, $postdata, $options)) {
             return true;
@@ -87,7 +87,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => count($postdata),
+            'CURLOPT_POST' => 1,
         );
         $output = $curl->post($url, $postdata, $options);
         $userstatus = $output;
@@ -101,7 +101,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => count($postdata),
+            'CURLOPT_POST' => 1,
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -117,7 +117,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => count($postdata),
+            'CURLOPT_POST' => 1,
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -131,7 +131,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => count($postdata),
+            'CURLOPT_POST' => 1,
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -142,7 +142,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => count($postdata),
+            'CURLOPT_POST' => 1,
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -164,7 +164,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => count($postdata),
+            'CURLOPT_POST' => 1,
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -176,6 +176,8 @@ class block_leeloolxp_tracking extends block_base {
 
         $estimates = '00:00:00';
 
+        $trackingtotalseconds = 0;
+
         if (isset($_REQUEST['id'])) {
             $activityid = $_REQUEST['id'];
             $url = $teamniourl . '/admin/sync_moodle_course/get_activity_tracking_info/' . $userid . '/'
@@ -184,7 +186,7 @@ class block_leeloolxp_tracking extends block_base {
             $options = array(
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
-                'CURLOPT_POST' => count($postdata),
+                'CURLOPT_POST' => 1,
             );
             $output = $curl->post($url, $postdata, $options);
 
@@ -225,7 +227,7 @@ class block_leeloolxp_tracking extends block_base {
             $options = array(
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
-                'CURLOPT_POST' => count($postdata),
+                'CURLOPT_POST' => 1,
             );
             $output = $curl->post($url, $postdata, $options);
 
@@ -264,14 +266,14 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => count($postdata),
+            'CURLOPT_POST' => 1,
         );
         $outputtimezone = $curl->post($url, $postdata, $options);
         date_default_timezone_set($outputtimezone);
 
         if ($sdetail->status == 'true') {
-            $shiftstarttime = strtotime($sdetail->data->start);
-            $shiftendtime = strtotime($sdetail->data->end);
+            @$shiftstarttime = strtotime($sdetail->data->start);
+            @$shiftendtime = strtotime($sdetail->data->end);
 
             if ($starttime == '0') {
                 $starttime = date("Y-m-d h:i:s");
@@ -304,7 +306,7 @@ class block_leeloolxp_tracking extends block_base {
             $options = array(
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
-                'CURLOPT_POST' => count($postdata),
+                'CURLOPT_POST' => 1,
             );
             $curl->post($url, $postdata, $options);
             $this->content = new stdClass;

@@ -64,13 +64,13 @@ class block_leeloolxp_tracking extends block_base {
         }
         $configsetting = get_config('block_leeloolxp_tracking');
         $liacnsekey = $configsetting->leeloolxp_block_tracking_licensekey;
-        $postdata = '&license_key=' . $liacnsekey;
+        $postdata = array('license_key' => $liacnsekey);
         $url = 'https://leeloolxp.com/api_moodle.php/?action=page_info';
         $curl = new curl;
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => 1,
+            'CURLOPT_POST' => count($postdata),
         );
         if (!$output = $curl->post($url, $postdata, $options)) {
             return true;
@@ -87,7 +87,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => 1,
+            'CURLOPT_POST' => count($postdata),
         );
         $output = $curl->post($url, $postdata, $options);
         $userstatus = $output;
@@ -101,7 +101,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => 1,
+            'CURLOPT_POST' => count($postdata),
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -117,7 +117,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => 1,
+            'CURLOPT_POST' => count($postdata),
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -131,7 +131,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => 1,
+            'CURLOPT_POST' => count($postdata),
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -142,7 +142,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => 1,
+            'CURLOPT_POST' => count($postdata),
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -164,7 +164,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => 1,
+            'CURLOPT_POST' => count($postdata),
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -186,7 +186,7 @@ class block_leeloolxp_tracking extends block_base {
             $options = array(
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
-                'CURLOPT_POST' => 1,
+                'CURLOPT_POST' => count($postdata),
             );
             $output = $curl->post($url, $postdata, $options);
 
@@ -227,7 +227,7 @@ class block_leeloolxp_tracking extends block_base {
             $options = array(
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
-                'CURLOPT_POST' => 1,
+                'CURLOPT_POST' => count($postdata),
             );
             $output = $curl->post($url, $postdata, $options);
 
@@ -266,7 +266,7 @@ class block_leeloolxp_tracking extends block_base {
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
-            'CURLOPT_POST' => 1,
+            'CURLOPT_POST' => count($postdata),
         );
         $outputtimezone = $curl->post($url, $postdata, $options);
         date_default_timezone_set($outputtimezone);
@@ -300,13 +300,13 @@ class block_leeloolxp_tracking extends block_base {
                     $endtimestatus = 'On Time (Learning now)';
                 }
             }
-            $postdata = '&user_id=' . $userid . '&start_status=' . $starttimestatus . '&end_status=' . $endtimestatus;
+            $postdata = array('user_id' => $userid, 'start_status' => $starttimestatus, 'end_status' => $endtimestatus);
             $url = $teamniourl . '/admin/sync_moodle_course/update_attendance_status/';
             $curl = new curl;
             $options = array(
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
-                'CURLOPT_POST' => 1,
+                'CURLOPT_POST' => count($postdata),
             );
             $curl->post($url, $postdata, $options);
             $this->content = new stdClass;
@@ -476,23 +476,23 @@ class block_leeloolxp_tracking extends block_base {
                     }
                     </script>";
 
-            $html .= '<b><hr></b><br> <b> Shift today </b> ' . $outputtimezone . ' <br>';
+            $html .= '<b><hr></b><br> <b> '.get_string('shift_today', 'block_leeloolxp_tracking').' </b> ' . $outputtimezone . ' <br>';
 
             if (!empty($sdetail->data)) {
-                $html .= 'Start time : ' . $sdetail->data->start;
+                $html .= get_string('starttime', 'block_leeloolxp_tracking').' : ' . $sdetail->data->start;
 
-                $html .= '<br> End time : ' . $sdetail->data->end;
+                $html .= '<br> '.get_string('endtime', 'block_leeloolxp_tracking').' : ' . $sdetail->data->end;
 
-                $html .= '<b><hr></b><br> <b>Attendance:</b> ';
+                $html .= '<b><hr></b><br> <b>'.get_string('attendance', 'block_leeloolxp_tracking').':</b> ';
 
-                $html .= '<br> Start: ' . date('h:i A', strtotime($starttime)) . "  <span>" . $starttimestatus . "</span>";
+                $html .= '<br> '.get_string('start', 'block_leeloolxp_tracking').': ' . date('h:i A', strtotime($starttime)) . "  <span>" . $starttimestatus . "</span>";
 
                 date_default_timezone_set($outputtimezone);
 
-                $html .= '<br> End: ' . date('h:i A') . "<span> " . $endtimestatus . "</span>";
+                $html .= '<br> '.get_string('end', 'block_leeloolxp_tracking').': ' . date('h:i A') . "<span> " . $endtimestatus . "</span>";
             } else {
 
-                $html .= 'Please set a schedule or ask your teacher';
+                $html .= get_string('askschedule', 'block_leeloolxp_tracking');
             }
 
             $html .= '<br> <br> <br>';
@@ -500,13 +500,13 @@ class block_leeloolxp_tracking extends block_base {
             if (strpos($clockintime, '-') === false) {
                 $html .= '';
 
-                $html .= '<div id="countdown_div" style="display:none;">Time: <span id="countdown"></
+                $html .= '<div id="countdown_div" style="display:none;">'.get_string('time', 'block_leeloolxp_tracking').': <span id="countdown"></
                 span>';
                 if ($sdetail->data) {
                     $html .= "/" . $sdetail->data->minimum_hours . ":00";
                 };
                 $html .= '</div>';
-                $html .= '<div id = "clockin_break_span_main" style="display:none">Break:
+                $html .= '<div id = "clockin_break_span_main" style="display:none">'.get_string('break', 'block_leeloolxp_tracking').':
                 <span id="clockin_break_span" >' .
                 $totalbreack . ' </span>';
                 if ($sdetail->data) {
@@ -520,9 +520,9 @@ class block_leeloolxp_tracking extends block_base {
                 }
             } else {
 
-                $html .= 'Time: Not updated yet.';
+                $html .= get_string('time_not_updated', 'block_leeloolxp_tracking');
 
-                $html .= '<br>Break: Not updated yet.';
+                $html .= '<br>'.get_string('break_not_updated', 'block_leeloolxp_tracking');
             }
 
             $html .= '<br> <br> <br>';
@@ -556,9 +556,9 @@ class block_leeloolxp_tracking extends block_base {
                 $this->page->pagetype == 'mod-label-view' ||
                 $this->page->pagetype == 'mod-url-view') {
                     $html .= '<b>' . $taskname . '</b> <br>';
-                    $html .= 'Time: <span id="Tcountdown" style="display:none;"></span>';
+                    $html .= get_string('time', 'block_leeloolxp_tracking').': <span id="Tcountdown" style="display:none;"></span>';
 
-                    $html .= '<br> Estimated: ' . $estimates;
+                    $html .= '<br> '.get_string('estimated', 'block_leeloolxp_tracking').': ' . $estimates;
                 }
             }
 

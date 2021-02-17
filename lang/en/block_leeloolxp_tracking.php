@@ -21,6 +21,18 @@
  * @copyright 2020 leeloolxp.com
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-$string['pluginname'] = 'Leeloo LXP attendance';
+$string['pluginname'] = 'Leeloo LXP Attendance';
 $string['leeloolxp_licensekey_block'] = 'License ID';
 $string['leeloolxp_licensekey_block_desc'] = 'The License ID of Leeloo LXP';
+$string['askschedule'] = 'Please set a schedule or ask your teacher';
+$string['break'] = 'Break';
+$string['time_not_updated'] = 'Time: Not updated yet.';
+$string['break_not_updated'] = 'Break: Not updated yet.';
+$string['time'] = 'Time';
+$string['estimated'] = 'Estimated';
+$string['shift_today'] = 'Shift today';
+$string['starttime'] = 'Start time';
+$string['endtime'] = 'End time';
+$string['attendance'] = 'Attendance';
+$string['start'] = 'Start';
+$string['end'] = 'End';

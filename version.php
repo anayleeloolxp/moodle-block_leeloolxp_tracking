@@ -25,6 +25,8 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version = 2019111800;
 $plugin->requires = 2019111200;
 $plugin->component = 'block_leeloolxp_tracking';
+$plugin->maturity = MATURITY_STABLE;
+$plugin->release = '1.0.0';
 $plugin->dependencies = array(
     'local_leeloolxp_web_login_tracking' => 2020050503
 );

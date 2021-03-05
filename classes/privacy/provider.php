@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Privacy subsystem implementation for block_profile_headline.
+ * Privacy subsystem implementation for block_leeloolxp_tracking.
  *
  * @package    block_leeloolxp_tracking
  * @category   privacy
@@ -53,14 +53,14 @@ class provider implements
     public static function get_metadata(collection $collection): collection {
 
         // This plugin defines a db table but it is not considered personal data and, therefore, not exported or deleted.
-        $collection->add_database_table('block_profile_headline', [
-            'courseid' => 'privacy:metadata:block_profile_headline:courseid',
-            'cmid' => 'privacy:metadata:block_profile_headline:cmid',
-            'timecreated' => 'privacy:metadata:block_profile_headline:timecreated',
-            'userid' => 'privacy:metadata:block_profile_headline:userid',
-            'action' => 'privacy:metadata:block_profile_headline:action',
-            'modname' => 'privacy:metadata:block_profile_headline:modname',
-        ], 'privacy:metadata:block_profile_headline');
+        $collection->add_database_table('block_leeloolxp_tracking', [
+            'courseid' => 'privacy:metadata:block_leeloolxp_tracking:courseid',
+            'cmid' => 'privacy:metadata:block_leeloolxp_tracking:cmid',
+            'timecreated' => 'privacy:metadata:block_leeloolxp_tracking:timecreated',
+            'userid' => 'privacy:metadata:block_leeloolxp_tracking:userid',
+            'action' => 'privacy:metadata:block_leeloolxp_tracking:action',
+            'modname' => 'privacy:metadata:block_leeloolxp_tracking:modname',
+        ], 'privacy:metadata:block_leeloolxp_tracking');
 
         return $collection;
     }

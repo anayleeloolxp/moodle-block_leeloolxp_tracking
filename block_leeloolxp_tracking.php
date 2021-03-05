@@ -178,8 +178,9 @@ class block_leeloolxp_tracking extends block_base {
 
         $trackingtotalseconds = 0;
 
-        if (isset($_REQUEST['id'])) {
-            $activityid = $_REQUEST['id'];
+        $reqid = optional_param('id', null, PARAM_RAW);
+        if (isset($reqid)) {
+            $activityid = $reqid;
             $url = $teamniourl . '/admin/sync_moodle_course/get_activity_tracking_info/' . $userid . '/'
             . $activityid;
             $curl = new curl;
@@ -527,7 +528,8 @@ class block_leeloolxp_tracking extends block_base {
 
             $html .= '<br> <br> <br>';
 
-            if (isset($_REQUEST['id'])) {
+            $reqid = optional_param('id', null, PARAM_RAW);
+            if (isset($reqid)) {
                 if ($this->page->pagetype == 'mod-wespher-conference' ||
                 $this->page->pagetype == 'mod-wespher-view' ||
                 $this->page->pagetype == 'mod-resource-view' ||

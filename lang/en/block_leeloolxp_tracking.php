@@ -36,3 +36,4 @@ $string['endtime'] = 'End time';
 $string['attendance'] = 'Attendance';
 $string['start'] = 'Start';
 $string['end'] = 'End';
+$string['leeloolxp_tracking:addinstance'] = '';

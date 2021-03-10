@@ -37,3 +37,11 @@ $string['attendance'] = 'Attendance';
 $string['start'] = 'Start';
 $string['end'] = 'End';
 $string['leeloolxp_tracking:addinstance'] = '';
+$string['leeloolxp_tracking:myaddinstance'] = '';
+
+$string['privacy:metadata'] = 'In order to integrate with Leeloo LXP, some user
+data need to be sent to the Leeloo LXP client application (remote system).';
+$string['privacy:metadata:leeloolxp_tracking'] = 'In order to integrate with Leeloo LXP, some user
+data need to be sent to the Leeloo LXP client application (remote system).';
+$string['privacy:metadata:id'] = 'The user ID';
+$string['privacy:metadata:email'] = 'The user\'s email is sent to Leeloo LXP to allow a better user experience.';

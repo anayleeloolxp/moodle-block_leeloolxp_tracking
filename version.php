@@ -22,11 +22,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
-$plugin->version = 2021030900;
+$plugin->version = 2021030901;
 $plugin->requires = 2019111200;
 $plugin->component = 'block_leeloolxp_tracking';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.0.1';
+$plugin->release = '1.0.2';
 $plugin->dependencies = array(
     'local_leeloolxp_web_login_tracking' => 2020050503
 );

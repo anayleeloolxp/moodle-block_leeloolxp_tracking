@@ -82,7 +82,7 @@ class block_leeloolxp_tracking extends block_base {
             return true;
         }
         $useremail = $USER->email;
-        $url = $teamniourl . '/admin/sync_moodle_course/check_user_llt_status_by_email/' . $useremail;
+        $url = $teamniourl . '/admin/sync_moodle_course/check_user_llt_status_by_email/' . base64_encode($useremail);
         $curl = new curl;
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
@@ -95,7 +95,7 @@ class block_leeloolxp_tracking extends block_base {
             return true;
         }
 
-        $url = $teamniourl . '/admin/sync_moodle_course/check_user_by_email/' . $useremail;
+        $url = $teamniourl . '/admin/sync_moodle_course/check_user_by_email/' . base64_encode($useremail);
 
         $curl = new curl;
         $options = array(

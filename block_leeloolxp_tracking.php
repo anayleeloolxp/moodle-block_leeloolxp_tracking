@@ -530,10 +530,10 @@ class block_leeloolxp_tracking extends block_base {
 
             $reqid = optional_param('id', null, PARAM_RAW);
             if (isset($reqid)) {
-                if ($this->page->pagetype == 'mod-wespher-conference' ||
-                $this->page->pagetype == 'mod-wespher-view' ||
+                if ($this->page->pagetype == 'mod-leeloolxpvc-conference' ||
+                $this->page->pagetype == 'mod-leeloolxpvc-view' ||
                 $this->page->pagetype == 'mod-resource-view' ||
-                $this->page->pagetype == 'mod-regularvideo-view' ||
+                $this->page->pagetype == 'mod-leeloolxpvimeo-view' ||
                 $this->page->pagetype == 'mod-forum-view' ||
                 $this->page->pagetype == 'mod-book-view' ||
                 $this->page->pagetype == 'mod-assign-view' ||

@@ -62,6 +62,10 @@ class block_leeloolxp_tracking extends block_base {
             $this->content = '';
             return $this->content;
         }
+
+        global $CFG;
+        require_once($CFG->dirroot . '/lib/filelib.php');
+
         $configsetting = get_config('block_leeloolxp_tracking');
         $liacnsekey = $configsetting->leeloolxp_block_tracking_licensekey;
         $postdata = array('license_key' => $liacnsekey);

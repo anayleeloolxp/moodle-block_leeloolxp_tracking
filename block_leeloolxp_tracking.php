@@ -365,7 +365,7 @@ class block_leeloolxp_tracking extends block_base {
 
                             if(popup_is_on=='1') {
 
-                                var tracking_on = localStorage.getItem('tracked');
+                                var tracking_on = sessionStorage.getItem('tracked');
 
                                 console.log(tracking_on);
 
@@ -456,7 +456,7 @@ class block_leeloolxp_tracking extends block_base {
                         var y = document.getElementById('countdown_div');
                         var b_div_main = document.getElementById('clockin_break_span_main');
                         if(y) {
-                                var clock_intracking_on = localStorage.getItem('tracked');
+                                var clock_intracking_on = sessionStorage.getItem('tracked');
                                 if(clock_intracking_on=='1') {
                                     document.getElementById('countdown_div').style.display = 'inline-block';
                                     if(b_div_main) {
@@ -471,7 +471,7 @@ class block_leeloolxp_tracking extends block_base {
                             var x =  document.getElementById('Tcountdown');
 
                             if ( x ) {
-                                var clock_intracking_on = localStorage.getItem('tracked');
+                                var clock_intracking_on = sessionStorage.getItem('tracked');
                                 if(clock_intracking_on=='1') {
                                     document.getElementById('Tcountdown').style.display = 'inline-block';
                                 }

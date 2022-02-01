@@ -15,73 +15,74 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * class block_leeloolxp_tracking
+ * Mobile output functions.
  *
  * @package    block_leeloolxp_tracking
  * @copyright  2020 leeloolxp.com
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-defined('MOODLE_INTERNAL') || die;
-require_once($CFG->dirroot . '/course/lib.php');
+
+namespace block_leeloolxp_tracking\output;
+
+defined('MOODLE_INTERNAL') || die();
 
 /**
- * Block attendance info
- *
- * @copyright  2020 Leeloo LXP (https://leeloolxp.com)
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * Mobile output functions.
  */
-class block_leeloolxp_tracking extends block_base {
-    /**
-     * Show attendance information of user.
-     */
+class mobile {
 
     /**
-     * Block initialization
-     */
-    public function init() {
-        $this->title = get_string('pluginname', 'block_leeloolxp_tracking');
-    }
-
-    /**
-     * Return contents of block_leeloolxp_tracking block
+     * Returns the SC document view page for the mobile app.
      *
-     * @return string of block
+     * @param array $args Arguments from tool_mobile_get_content WS
+     * @return array HTML, javascript and otherdata
      */
-    public function get_content() {
-        global $USER;
-        if ($this->content !== null) {
-            return $this->content;
-        }
-        if (empty($this->instance)) {
-            $this->content = '';
-            return $this->content;
-        }
-
-        global $CFG;
+    public static function mobile_block_view(array $args) : array {
+        global $CFG, $USER;
         require_once($CFG->dirroot . '/lib/filelib.php');
 
         $configsetting = get_config('block_leeloolxp_tracking');
         $liacnsekey = $configsetting->leeloolxp_block_tracking_licensekey;
         $postdata = array('license_key' => $liacnsekey);
         $url = 'https://leeloolxp.com/api_moodle.php/?action=page_info';
-        $curl = new curl;
+        $curl = new \curl;
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
         );
         if (!$output = $curl->post($url, $postdata, $options)) {
-            return true;
+            return [
+                'templates' => [
+                    [
+                        'id' => 'main',
+                        'html' => '<h1>Hello</h1>'
+                    ],
+                ],
+                'javascript' => '',
+                'otherdata' => [],
+                'files' => []
+            ];
         }
         $infoteamnio = json_decode($output);
         if ($infoteamnio->status != 'false') {
             $teamniourl = $infoteamnio->data->install_url;
         } else {
-            return true;
+            return [
+                'templates' => [
+                    [
+                        'id' => 'main',
+                        'html' => '<h1>Hello1</h1>'
+                    ],
+                ],
+                'javascript' => '',
+                'otherdata' => [],
+                'files' => []
+            ];
         }
         $useremail = $USER->email;
         $url = $teamniourl . '/admin/sync_moodle_course/check_user_llt_status_by_email/' . base64_encode($useremail);
-        $curl = new curl;
+        $curl = new \curl;
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
@@ -90,12 +91,22 @@ class block_leeloolxp_tracking extends block_base {
         $output = $curl->post($url, $postdata, $options);
         $userstatus = $output;
         if ($userstatus == 0) {
-            return true;
+            return [
+                'templates' => [
+                    [
+                        'id' => 'main',
+                        'html' => '<h1>Hello2</h1>'
+                    ],
+                ],
+                'javascript' => '',
+                'otherdata' => [],
+                'files' => []
+            ];
         }
 
         $url = $teamniourl . '/admin/sync_moodle_course/check_user_by_email/' . base64_encode($useremail);
 
-        $curl = new curl;
+        $curl = new \curl;
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
@@ -106,12 +117,22 @@ class block_leeloolxp_tracking extends block_base {
         $userid = $output;
 
         if ($userid == '0') {
-            return true;
+            return [
+                'templates' => [
+                    [
+                        'id' => 'main',
+                        'html' => '<h1>Hello3</h1>'
+                    ],
+                ],
+                'javascript' => '',
+                'otherdata' => [],
+                'files' => []
+            ];
         }
 
         $url = $teamniourl . '/login_api/get_shift_details_api/' . $userid;
 
-        $curl = new curl;
+        $curl = new \curl;
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
@@ -125,7 +146,7 @@ class block_leeloolxp_tracking extends block_base {
 
         $url = $teamniourl . '/admin/sync_moodle_course/get_attendance_info/' . $userid;
 
-        $curl = new curl;
+        $curl = new \curl;
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
@@ -136,7 +157,7 @@ class block_leeloolxp_tracking extends block_base {
         $starttime = $output;
 
         $url = $teamniourl . '/admin/sync_moodle_course/get_clockin_info/' . $userid;
-        $curl = new curl;
+        $curl = new \curl;
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
@@ -158,7 +179,7 @@ class block_leeloolxp_tracking extends block_base {
 
         $url = $teamniourl . '/admin/sync_moodle_course/get_breacks/' . $userid;
 
-        $curl = new curl;
+        $curl = new \curl;
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
@@ -181,7 +202,7 @@ class block_leeloolxp_tracking extends block_base {
             $activityid = $reqid;
             $url = $teamniourl . '/admin/sync_moodle_course/get_activity_tracking_info/' . $userid . '/'
             . $activityid;
-            $curl = new curl;
+            $curl = new \curl;
             $options = array(
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
@@ -222,7 +243,7 @@ class block_leeloolxp_tracking extends block_base {
 
             $url = $teamniourl . '/admin/sync_moodle_course/get_task_estimate_and_name/' . $userid . '/' . $activityid;
 
-            $curl = new curl;
+            $curl = new \curl;
             $options = array(
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
@@ -261,7 +282,7 @@ class block_leeloolxp_tracking extends block_base {
 
         $url = $teamniourl . '/admin/sync_moodle_course/get_timezone/';
 
-        $curl = new curl;
+        $curl = new \curl;
         $options = array(
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
@@ -301,14 +322,13 @@ class block_leeloolxp_tracking extends block_base {
             }
             $postdata = array('user_id' => $userid, 'start_status' => $starttimestatus, 'end_status' => $endtimestatus);
             $url = $teamniourl . '/admin/sync_moodle_course/update_attendance_status/';
-            $curl = new curl;
+            $curl = new \curl;
             $options = array(
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
                 'CURLOPT_POST' => count($postdata),
             );
             $curl->post($url, $postdata, $options);
-            $this->content = new stdClass;
             $configloginlogout = get_config('local_leeloolxp_web_login_tracking');
             $popupison = $configloginlogout->web_loginlogout_popup;
             $html = '';
@@ -526,7 +546,7 @@ class block_leeloolxp_tracking extends block_base {
 
             $html .= '<br> <br> <br>';
 
-            $reqid = optional_param('id', null, PARAM_RAW);
+/*             $reqid = optional_param('id', null, PARAM_RAW);
             if (isset($reqid)) {
                 if ($this->page->pagetype == 'mod-leeloolxpvc-conference' ||
                 $this->page->pagetype == 'mod-leeloolxpvc-view' ||
@@ -560,21 +580,21 @@ class block_leeloolxp_tracking extends block_base {
 
                     $html .= '<br> '.get_string('estimated', 'block_leeloolxp_tracking').': ' . $estimates;
                 }
-            }
+            } */
 
-            $this->content->text = $html;
-
-            $this->content->footer = '';
-
-            return $this->content;
+            return [
+                'templates' => [
+                    [
+                        'id' => 'main',
+                        'html' => $html
+                    ],
+                ],
+                'javascript' => '',
+                'otherdata' => [],
+                'files' => []
+            ];
         }
-    }
-    /**
-     * Allow the block to have a configuration page
-     *
-     * @return boolean
-     */
-    public function has_config() {
-        return true;
+
+        
     }
 }

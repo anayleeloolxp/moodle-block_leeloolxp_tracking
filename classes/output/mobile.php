@@ -87,6 +87,9 @@ class mobile {
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
+            'CURLOPT_HTTPHEADER' => array(
+                'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+            )
         );
         $output = $curl->post($url, $postdata, $options);
         $userstatus = $output;
@@ -111,6 +114,9 @@ class mobile {
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
+            'CURLOPT_HTTPHEADER' => array(
+                'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+            )
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -151,6 +157,9 @@ class mobile {
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
+            'CURLOPT_HTTPHEADER' => array(
+                'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+            )
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -162,6 +171,9 @@ class mobile {
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
+            'CURLOPT_HTTPHEADER' => array(
+                'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+            )
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -184,6 +196,9 @@ class mobile {
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
+            'CURLOPT_HTTPHEADER' => array(
+                'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+            )
         );
         $output = $curl->post($url, $postdata, $options);
 
@@ -207,6 +222,9 @@ class mobile {
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
                 'CURLOPT_POST' => count($postdata),
+                'CURLOPT_HTTPHEADER' => array(
+                    'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+                )
             );
             $output = $curl->post($url, $postdata, $options);
 
@@ -248,6 +266,9 @@ class mobile {
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
                 'CURLOPT_POST' => count($postdata),
+                'CURLOPT_HTTPHEADER' => array(
+                    'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+                )
             );
             $output = $curl->post($url, $postdata, $options);
 
@@ -287,6 +308,9 @@ class mobile {
             'CURLOPT_RETURNTRANSFER' => true,
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
+            'CURLOPT_HTTPHEADER' => array(
+                'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+            )
         );
         $outputtimezone = $curl->post($url, $postdata, $options);
         date_default_timezone_set($outputtimezone);
@@ -327,6 +351,9 @@ class mobile {
                 'CURLOPT_RETURNTRANSFER' => true,
                 'CURLOPT_HEADER' => false,
                 'CURLOPT_POST' => count($postdata),
+                'CURLOPT_HTTPHEADER' => array(
+                    'LeelooLXPToken: '.get_config('local_leeloolxpapi')->leelooapitoken.''
+                )
             );
             $curl->post($url, $postdata, $options);
             $configloginlogout = get_config('local_leeloolxp_web_login_tracking');

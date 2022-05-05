@@ -22,7 +22,7 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
-$plugin->version = 2022050500;
+$plugin->version = 2022050501;
 $plugin->requires = 2019111200;
 $plugin->component = 'block_leeloolxp_tracking';
 $plugin->maturity = MATURITY_STABLE;

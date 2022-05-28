@@ -24,8 +24,6 @@
 
 namespace block_leeloolxp_tracking\output;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Mobile output functions.
  */
@@ -88,7 +86,7 @@ class mobile {
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
             'CURLOPT_HTTPHEADER' => array(
-                'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
             )
         );
         $output = $curl->post($url, $postdata, $options);
@@ -115,7 +113,7 @@ class mobile {
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
             'CURLOPT_HTTPHEADER' => array(
-                'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
             )
         );
         $output = $curl->post($url, $postdata, $options);
@@ -144,7 +142,7 @@ class mobile {
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
             'CURLOPT_HTTPHEADER' => array(
-                'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
             )
         );
         $output = $curl->post($url, $postdata, $options);
@@ -161,7 +159,7 @@ class mobile {
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
             'CURLOPT_HTTPHEADER' => array(
-                'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
             )
         );
         $output = $curl->post($url, $postdata, $options);
@@ -175,7 +173,7 @@ class mobile {
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
             'CURLOPT_HTTPHEADER' => array(
-                'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
             )
         );
         $output = $curl->post($url, $postdata, $options);
@@ -200,7 +198,7 @@ class mobile {
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
             'CURLOPT_HTTPHEADER' => array(
-                'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
             )
         );
         $output = $curl->post($url, $postdata, $options);
@@ -226,7 +224,7 @@ class mobile {
                 'CURLOPT_HEADER' => false,
                 'CURLOPT_POST' => count($postdata),
                 'CURLOPT_HTTPHEADER' => array(
-                    'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                    'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
                 )
             );
             $output = $curl->post($url, $postdata, $options);
@@ -270,7 +268,7 @@ class mobile {
                 'CURLOPT_HEADER' => false,
                 'CURLOPT_POST' => count($postdata),
                 'CURLOPT_HTTPHEADER' => array(
-                    'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                    'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
                 )
             );
             $output = $curl->post($url, $postdata, $options);
@@ -312,7 +310,7 @@ class mobile {
             'CURLOPT_HEADER' => false,
             'CURLOPT_POST' => count($postdata),
             'CURLOPT_HTTPHEADER' => array(
-                'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
             )
         );
         $outputtimezone = $curl->post($url, $postdata, $options);
@@ -355,7 +353,7 @@ class mobile {
                 'CURLOPT_HEADER' => false,
                 'CURLOPT_POST' => count($postdata),
                 'CURLOPT_HTTPHEADER' => array(
-                    'LeelooLXPToken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
+                    'Leeloolxptoken: ' . get_config('local_leeloolxpapi')->leelooapitoken . ''
                 )
             );
             $curl->post($url, $postdata, $options);
@@ -525,7 +523,9 @@ class mobile {
                     }
                     </script>";
 
-            $html .= '<b><hr></b><br> <b> ' . get_string('shift_today', 'block_leeloolxp_tracking') . ' </b> ' . $outputtimezone . ' <br>';
+            $html .= '<b><hr></b><br> <b> ' .
+                get_string('shift_today', 'block_leeloolxp_tracking') .
+                ' </b> ' . $outputtimezone . ' <br>';
 
             if (!empty($sdetail->data)) {
                 $html .= get_string('starttime', 'block_leeloolxp_tracking') . ' : ' . $sdetail->data->start;
@@ -534,11 +534,17 @@ class mobile {
 
                 $html .= '<b><hr></b><br> <b>' . get_string('attendance', 'block_leeloolxp_tracking') . ':</b> ';
 
-                $html .= '<br> ' . get_string('start', 'block_leeloolxp_tracking') . ': ' . date('h:i A', strtotime($starttime)) . "  <span>" . $starttimestatus . "</span>";
+                $html .= '<br> ' .
+                    get_string('start', 'block_leeloolxp_tracking') .
+                    ': ' . date('h:i A', strtotime($starttime)) .
+                    "  <span>" . $starttimestatus . "</span>";
 
                 date_default_timezone_set($outputtimezone);
 
-                $html .= '<br> ' . get_string('end', 'block_leeloolxp_tracking') . ': ' . date('h:i A') . "<span> " . $endtimestatus . "</span>";
+                $html .= '<br> ' .
+                    get_string('end', 'block_leeloolxp_tracking') .
+                    ': ' . date('h:i A') .
+                    "<span> " . $endtimestatus . "</span>";
             } else {
 
                 $html .= get_string('askschedule', 'block_leeloolxp_tracking');
@@ -549,14 +555,16 @@ class mobile {
             if (strpos($clockintime, '-') === false) {
                 $html .= '';
 
-                $html .= '<div id="countdown_div" style="display:none;">' . get_string('time', 'block_leeloolxp_tracking') . ': <span id="countdown"></
-                span>';
+                $html .= '<div id="countdown_div" style="display:none;">' .
+                    get_string('time', 'block_leeloolxp_tracking') .
+                    ': <span id="countdown"></span>';
                 if ($sdetail->data) {
                     $html .= "/" . $sdetail->data->minimum_hours . ":00";
                 };
                 $html .= '</div>';
-                $html .= '<div id = "clockin_break_span_main" style="display:none">' . get_string('break', 'block_leeloolxp_tracking') . ':
-                <span id="clockin_break_span" >' .
+                $html .= '<div id = "clockin_break_span_main" style="display:none">' .
+                    get_string('break', 'block_leeloolxp_tracking') .
+                    ': <span id="clockin_break_span" >' .
                     $totalbreack . ' </span>';
                 if ($sdetail->data) {
                     if (strpos($sdetail->data->allow_breack_time, '.') === false) {
@@ -575,42 +583,6 @@ class mobile {
             }
 
             $html .= '<br> <br> <br>';
-
-            /*             $reqid = optional_param('id', null, PARAM_RAW);
-            if (isset($reqid)) {
-                if ($this->page->pagetype == 'mod-leeloolxpvc-conference' ||
-                $this->page->pagetype == 'mod-leeloolxpvc-view' ||
-                $this->page->pagetype == 'mod-resource-view' ||
-                $this->page->pagetype == 'mod-leeloolxpvimeo-view' ||
-                $this->page->pagetype == 'mod-forum-view' ||
-                $this->page->pagetype == 'mod-book-view' ||
-                $this->page->pagetype == 'mod-assign-view' ||
-                $this->page->pagetype == 'mod-survey-view' ||
-                $this->page->pagetype == 'mod-page-view' ||
-                $this->page->pagetype == 'mod-quiz-view' ||
-                $this->page->pagetype == 'mod-quiz-attempt' ||
-                $this->page->pagetype == 'mod-quiz-summary' ||
-                $this->page->pagetype == 'mod-quiz-summary' ||
-                $this->page->pagetype == 'mod-chat-view' ||
-                $this->page->pagetype == 'mod-choice-view' ||
-                $this->page->pagetype == 'mod-lti-view' ||
-                $this->page->pagetype == 'mod-feedback-view' ||
-                $this->page->pagetype == 'mod-data-view' ||
-                $this->page->pagetype == 'mod-forum-view' ||
-                $this->page->pagetype == 'mod-glossary-view' ||
-                $this->page->pagetype == 'mod-scorm-view' ||
-                $this->page->pagetype == 'mod-wiki-view' ||
-                $this->page->pagetype == 'mod-workshop-view' ||
-                $this->page->pagetype == 'mod-folder-view' ||
-                $this->page->pagetype == 'mod-imscp-view' ||
-                $this->page->pagetype == 'mod-label-view' ||
-                $this->page->pagetype == 'mod-url-view') {
-                    $html .= '<b>' . $taskname . '</b> <br>';
-                    $html .= get_string('time', 'block_leeloolxp_tracking').': <span id="Tcountdown" style="display:none;"></span>';
-
-                    $html .= '<br> '.get_string('estimated', 'block_leeloolxp_tracking').': ' . $estimates;
-                }
-            } */
 
             return [
                 'templates' => [

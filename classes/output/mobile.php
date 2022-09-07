@@ -409,7 +409,7 @@ class mobile {
 
                                 var tracking_on = sessionStorage.getItem('tracked');
 
-                                console.log(tracking_on);
+                                //console.log(tracking_on);
 
                                 if(tracking_on=='1') {
 
